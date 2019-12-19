@@ -11,6 +11,7 @@ def intro():
       > O jogo é composto por 2 jogadores (✘ ou ✺) que jogam alternadamente.
       > Cada jogador escolhe uma coluna e a sua peça ocupará a cada mais baixa da mesma.
       > Se ninguém completar o objetivo, será decretado empate.
+      > Cada jogador pode digitar "FIM" a qualquer momento para desistir.
 
   >> Bom jogo!
   """)
@@ -72,7 +73,15 @@ def jogador2(tabuleiro, coluna, linhas):
         return jogador2(tabuleiro, coluna, (linhas-1))
 
 # Validar jogadas (teste de input)
+def validarJogada(coluna, tabuleiro):
+    if((coluna.isdigit() == False) or (int(coluna) > 7) or (int(coluna) < 1)):
+        return False
 
+    elif(tabuleiro[0][int(coluna)-1] == '✘' or tabuleiro[0][int(coluna)-1] == '✺'):
+        return False
+
+    else:
+        return True
 
 
 #Michel Moreira - ADS - IFPB CZ - 2019.2
