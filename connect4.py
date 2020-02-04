@@ -19,6 +19,21 @@ while (jogar == True):
   jogador = 1
 
   coluna = input("> Informe a coluna que deseja jogar: ")
+
+  while (bib.validarJogada(coluna, tabuleiro) != True):
+      if (coluna.upper() == "FIM"):
+          # Jogador 1 desistiu, jogador 2 ganha e encerra o jogo.
+          print (' ')
+          print("✺✺ Jogador 2 ganhou! ✺✺")
+          print (' ')
+          print("【Jogo encerrado!】")       
+          os._exit(1)
+                    
+      else:
+          print ('\n[Vez do Jogador 1]')
+          print ("Jogada inválida!")
+          coluna = input("➪ Informe a coluna novamente: ")
+
   
   coluna = int(coluna)
   coluna = coluna - 1
@@ -29,6 +44,21 @@ while (jogar == True):
   jogador = 2
 
   coluna = input("> Informe a coluna que deseja jogar: ")
+
+  while (bib.validarJogada(coluna, tabuleiro) != True):
+            if (coluna.upper() == "FIM"):
+                # Jogador 2 desistiu, jogador 1 ganha e encerra o jogo.
+                print (' ')
+                print("✘✘ Jogador 1 ganhou! ✘✘")
+                print (' ')
+                print("【Jogo encerrado!】")
+                os._exit(1)
+                
+            else:
+                print ('\n[Vez do Jogador 2]')
+                print ("Jogada inválida!")
+                coluna = input("➪ Informe a coluna novamente: ")
+
   
   coluna = int(coluna)
   coluna = coluna - 1
