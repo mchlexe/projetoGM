@@ -93,5 +93,49 @@ def validarJogada(coluna, tabuleiro):
     else:
         return True
 
+# Funcoes para verificar o vencedor
+# Colunas
+def verificaVertical(tabuleiro, jogador):
+    linhas = 6
+    vertical = []
+    colunas = 0
+
+    if(jogador == 1):
+        vencedor = "✘✘✘✘"
+
+    elif(jogador == 2):
+        vencedor = "✺✺✺✺"
+
+    while(colunas < 7):
+        for i in range(linhas):
+            vertical.append(tabuleiro[i][colunas])
+        vertical = "".join(vertical)
+
+        if(vertical.find(vencedor) != -1):
+            return True
+        else:
+            vertical = list(vertical)
+            colunas +=1
+
+    return False
+
+# Linhas
+#Linhas horizontais
+def verificaHorizontal(tabuleiro, jogador):
+
+    if(jogador == 1):
+        vencedor = "✘✘✘✘"
+
+    elif(jogador == 2):
+        vencedor = "✺✺✺✺"
+    
+    for i in range(len(tabuleiro)):
+        horizontal = tabuleiro[i]
+        horizontal = "".join(horizontal)
+
+        if(horizontal.find(vencedor) != -1):
+            return True
+
+    return False
 
 #Michel Moreira - ADS - IFPB CZ - 2019.2

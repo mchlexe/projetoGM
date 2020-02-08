@@ -4,7 +4,7 @@ import bib
 import os
 
 jogar = True
-# rodadas = 0
+rodadas = 0
 
 #Imprimir regras do jogo
 bib.intro()
@@ -14,63 +14,80 @@ tabuleiro = bib.tabuleiro()
 bib.imprimirTabuleiro(tabuleiro)
 
 while (jogar == True):
-  #Input das jogadas
-  print ('\n[Vez do Jogador 1]')
-  jogador = 1
+    # Input das jogadas
 
-  coluna = input("> Informe a coluna que deseja jogar: ")
+    print ('\n[Vez do Jogador 1]')
+    jogador = 1
 
-  while (bib.validarJogada(coluna, tabuleiro) != True):
-      if (coluna.upper() == "FIM"):
-          # Jogador 1 desistiu, jogador 2 ganha e encerra o jogo.
-          print (' ')
-          print("✺✺ Jogador 2 ganhou! ✺✺")
-          print (' ')
-          print("【Jogo encerrado!】")       
-          os._exit(1)
+    coluna = input("> Informe a coluna que deseja jogar: ")
+
+    while (bib.validarJogada(coluna, tabuleiro) != True):
+        if (coluna.upper() == "FIM"):
+            # Jogador 1 desistiu, jogador 2 ganha e encerra o jogo.
+            print (' ')
+            print("✺✺ Jogador 2 ganhou! ✺✺")
+            print (' ')
+            print("【Jogo encerrado!】")       
+            os._exit(1)
                     
-      else:
-          print ('\n[Vez do Jogador 1]')
-          print ("Jogada inválida!")
-          coluna = input("➪ Informe a coluna novamente: ")
+        else:
+            print ('\n[Vez do Jogador 1]')
+            print ("Jogada inválida!")
+            coluna = input("➪ Informe a coluna novamente: ")
 
   
-  coluna = int(coluna)
-  coluna = coluna - 1
+    coluna = int(coluna)
+    coluna = coluna - 1
 
-  bib.jogada(tabuleiro, coluna, jogador)
+    # Executa jogada
+    bib.jogada(tabuleiro, coluna, jogador)
 
-  print ('\n[Vez do Jogador 2]')
-  jogador = 2
+    # Verifica colunas
+    if(bib.verificaVertical(tabuleiro,jogador) or bib.verificaHorizontal(tabuleiro,jogador)):
+        jogar = False
+        print("✘✘ Jogador 1 ganhou! ✘✘")
 
-  coluna = input("> Informe a coluna que deseja jogar: ")
+    if (jogar == True):
+        print ('\n[Vez do Jogador 2]')
+        jogador = 2
 
-  while (bib.validarJogada(coluna, tabuleiro) != True):
-            if (coluna.upper() == "FIM"):
-                # Jogador 2 desistiu, jogador 1 ganha e encerra o jogo.
-                print (' ')
-                print("✘✘ Jogador 1 ganhou! ✘✘")
-                print (' ')
-                print("【Jogo encerrado!】")
-                os._exit(1)
-                
-            else:
-                print ('\n[Vez do Jogador 2]')
-                print ("Jogada inválida!")
-                coluna = input("➪ Informe a coluna novamente: ")
+        coluna = input("> Informe a coluna que deseja jogar: ")
 
-  
-  coluna = int(coluna)
-  coluna = coluna - 1
+        while (bib.validarJogada(coluna, tabuleiro) != True):
+                if (coluna.upper() == "FIM"):
+                    # Jogador 2 desistiu, jogador 1 ganha e encerra o jogo.
+                    print (' ')
+                    print("✘✘ Jogador 1 ganhou! ✘✘")
+                    print (' ')
+                    print("【Jogo encerrado!】")
+                    os._exit(1)
+                    
+                else:
+                    print ('\n[Vez do Jogador 2]')
+                    print ("Jogada inválida!")
+                    coluna = input("➪ Informe a coluna novamente: ")
 
-  bib.jogada(tabuleiro, coluna, jogador)
-  
-#   rodadas += 1
-# #Como encerrar o jogo (Ganhando ou por pedido do usuário)
-#   if (rodadas >= 21):
-#     jogar = False
-#     print(' ')
-#     print('✘✺ Empate! ✺✘')
+        
+        coluna = int(coluna)
+        coluna = coluna - 1
+
+        # Executa jogada
+        bib.jogada(tabuleiro, coluna, jogador)
+
+        # Verifica colunas
+        if(bib.verificaVertical(tabuleiro,jogador) or bib.verificaHorizontal(tabuleiro,jogador)):
+            jogar = False
+            print("✺✺ Jogador 2 ganhou! ✺✺")
+    
+    rodadas += 1
+
+    if(rodadas >= 21):
+        jogar = False
+        print(' ')
+        print('✘✺ Empate! ✺✘')
+
+print (' ')
+print("【Jogo encerrado!】")
 
 
 #Michel Moreira - ADS - IFPB CZ - 2019.2
