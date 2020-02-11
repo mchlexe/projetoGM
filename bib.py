@@ -1,4 +1,5 @@
 # Biblioteca de funções que serão utilizadas pelo jogo
+import os
 
 #Introdução e regras
 def intro():
@@ -119,8 +120,7 @@ def verificaVertical(tabuleiro, jogador):
 
     return False
 
-# Linhas
-#Linhas horizontais
+#Linhas
 def verificaHorizontal(tabuleiro, jogador):
 
     if(jogador == 1):
@@ -137,5 +137,45 @@ def verificaHorizontal(tabuleiro, jogador):
             return True
 
     return False
+
+# Diagonais
+def verificaDiagonal(tabuleiro, jogador):
+
+    if(jogador == 1):
+        vencedor = "✘✘✘✘"
+
+    elif(jogador == 2):
+        vencedor = "✺✺✺✺"
+        
+    #Diagonal (Esquerda ➪ Direita)
+    for i in range (3,6):
+        for d in range(4):
+            parte1 = tabuleiro[i][d]
+            parte2 = tabuleiro[i-1][d+1]
+            parte3 = tabuleiro[i-2][d+2]
+            parte4 = tabuleiro[i-3][d+3]
+
+            diagonal = [parte1, parte2, parte3, parte4]    
+            diagonal = "".join(diagonal)
+
+            if(diagonal == vencedor):
+                return True
+
+    #Diagonal (Direita ➪ Esquerda)
+    for i in range (3):
+        for d in range(4):
+            parte1 = tabuleiro[i][d]
+            parte2 = tabuleiro[i+1][d+1]
+            parte3 = tabuleiro[i+2][d+2]
+            parte4 = tabuleiro[i+3][d+3]
+
+            diagonal = [parte1, parte2, parte3, parte4]    
+            diagonal = "".join(diagonal)
+
+            if(diagonal == vencedor):
+                return True
+
+    return False
+
 
 #Michel Moreira - ADS - IFPB CZ - 2019.2

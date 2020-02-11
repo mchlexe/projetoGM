@@ -27,7 +27,7 @@ while (jogar == True):
             print (' ')
             print("✺✺ Jogador 2 ganhou! ✺✺")
             print (' ')
-            print("【Jogo encerrado!】")       
+            print("【Jogo encerrado!】")
             os._exit(1)
                     
         else:
@@ -43,7 +43,7 @@ while (jogar == True):
     bib.jogada(tabuleiro, coluna, jogador)
 
     # Verifica colunas
-    if(bib.verificaVertical(tabuleiro,jogador) or bib.verificaHorizontal(tabuleiro,jogador)):
+    if(bib.verificaVertical(tabuleiro,jogador) or bib.verificaHorizontal(tabuleiro,jogador) or bib.verificaDiagonal(tabuleiro, jogador)):
         jogar = False
         print("✘✘ Jogador 1 ganhou! ✘✘")
 
@@ -75,7 +75,7 @@ while (jogar == True):
         bib.jogada(tabuleiro, coluna, jogador)
 
         # Verifica colunas
-        if(bib.verificaVertical(tabuleiro,jogador) or bib.verificaHorizontal(tabuleiro,jogador)):
+        if(bib.verificaVertical(tabuleiro,jogador) or bib.verificaHorizontal(tabuleiro,jogador) or bib.verificaDiagonal(tabuleiro, jogador)):
             jogar = False
             print("✺✺ Jogador 2 ganhou! ✺✺")
     
