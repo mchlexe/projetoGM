@@ -59,6 +59,8 @@ def jogada(tabuleiro, coluna, jogador):
         tabuleiro = jogador2(tabuleiro,coluna,linhas)
 
     print(' ')
+    os.system('cls' if os.name == 'nt' else 'clear')
+    intro()
     imprimirTabuleiro(tabuleiro)
 
 #Executa a jogada do jogador 1.
